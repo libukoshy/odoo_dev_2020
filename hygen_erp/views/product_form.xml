@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <record id="product_template_kanban_view_inherit_hygen" model="ir.ui.view">
+<field name="name">Product.template.product.kanban</field>
+<field name="model">product.template</field>
+<field name="inherit_id" ref="product.product_template_kanban_view" />
+<field name="arch" type="xml">
+
+<xpath expr="//div[@name='tags']" position="after">
+    <ul><li>Catalog Code: <field name="catalog_code"/></li> </ul>
+    <ul><li>Seha Code: <field name="saha_code"/></li> </ul>
+
+
+
+</xpath>
+</field>
+
+</record>
+       <record id="product_template_tree_view_inherit_hygen" model="ir.ui.view">
+<field name="name">Product.template.product.tree</field>
+<field name="model">product.template</field>
+<field name="inherit_id" ref="product.product_template_tree_view" />
+<field name="arch" type="xml">
+
+<xpath expr="//field[@name='name']" position="after">
+    <field name="catalog_code"/>
+    <field name="saha_code"/>
+     <field name="brand"/>
+</xpath>
+
+
+</field>
+</record>
+
+
+   <record id="view_account_invoice_hygen_form_inherit" model="ir.ui.view">
+            <field name="name">view.account.invoice.hygen.form.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+
+                 <xpath expr="//tree/field[@name='name']" position="attributes">
+                     <attribute name="invisible">1</attribute>
+
+                 </xpath>
+
+				 <xpath expr="//tree/field[@name='product_id']" position="before">
+
+                     <field name="catalog_code" context="{'catalog': True}"/>
+                 <field name="seha_code"/>
+                     <field name="category_id"/>
+                    <field name="brand"/>
+
+				</xpath>
+                <field name="date_invoice" position="after">
+                    <field name="pricing_type"/>
+                </field>
+
+            </field>
+        </record>
+
+
+    <record id="sale_order_form_inherit_trading" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.trading</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_order']" position="after">
+<!--                <field name="pricing_type" attrs="{'readonly': [('state', 'not in', ['draft', 'sent'])]}"/>-->
+                <field name="pricing_type"/>
+            </xpath>
+            <xpath expr="//tree/field[@name='product_id']" position="before">
+
+
+                     <field name="catalog_code"  context="{'catalog': True}"/>
+<!--                                     <field name="catalog_code"/>-->
+                 <field name="seha_code"/>
+                <field name="category_id"/>
+                <field name="brand"/>
+            </xpath>
+            <xpath expr="//tree/field[@name='name']" position="attributes">
+                 <attribute name="invisible">1</attribute>
+            </xpath>
+
+
+
+        </field>
+    </record>
+
+
+
+
+    <record id="product_template_hygenic" model="ir.ui.view">
+        <field name="name">product.label.multiple.print</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+
+              <xpath expr="//field[@name='categ_id']" position="after">
+                <field name="product_code_hy"/>
+                  <field name="catalog_code"/>
+<!--                  <button name="update_catalog" type="object" string="Update" class="oe_highlight"/>-->
+                  <field name="brand"/>
+                  <field name="saha_code"/>
+                   <field name="seha_item_description"/>
+                  <field name="smd_item_description"/>
+                  <field name="seha_c_ten"/>
+                  <field name="award_status"/>
+
+
+             </xpath>
+
+
+
+            <xpath expr="//page[@name='sales']" position="after">
+                <page string="Price Slab">
+                    <field name="price_slab">
+                        <tree editable="bottom">
+<!--                            <field name="name" required="1"/>-->
+                            <field name="pricing_type" required="1"/>
+                            <field name="price" required="1"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+
+
+
+
+     <record id="product_product_hygenic_view" model="ir.ui.view">
+        <field name="name">product.product.label.multiple.print</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+
+             <xpath expr="//field[@name='categ_id']" position="after">
+
+             <field name="product_code_hy"/>
+                  <field name="catalog_code"/>
+                  <field name="brand"/>
+                  <field name="saha_code"/>
+                  <field name="seha_item_description"/>
+                  <field name="smd_item_description"/>
+                  <field name="seha_c_ten"/>
+                  <field name="award_status"/>
+                 <field name="smd_item_code"/>
+             </xpath>
+
+
+            <xpath expr="//page[@name='sales']" position="after">
+                <page string="Price Slab">
+                    <field name="price_slab">
+                        <tree editable="bottom">
+<!--                            <field name="name" required="1"/>-->
+                            <field name="pricing_type" required="1"/>
+                            <field name="price" required="1"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+
+
+
+    <record id="product_brand_view_form" model="ir.ui.view">
+        <field name="name">product.brand.form</field>
+        <field name="model">product.brand</field>
+        <field name="arch" type="xml">
+            <form string="Product Brand">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="product_brand_view_tree" model="ir.ui.view">
+        <field name="name">product.brand.tree</field>
+        <field name="model">product.brand</field>
+        <field name="arch" type="xml">
+            <tree string="Product Brand">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_product_brand" model="ir.actions.act_window">
+        <field name="name">Product Brand</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.brand</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            <!-- Add Text Here -->
+          </p><p>
+            <!-- More details about what a user can do with this object will be OK -->
+          </p>
+        </field>
+    </record>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem name="Brands" parent="sales_team.menu_sale_config" id="product_brand_menu" action="action_product_brand" sequence="50"/>
+
+
+</odoo>
