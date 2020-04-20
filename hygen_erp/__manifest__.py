@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 {
-    'name': 'HyGen ERP',
-    'summary': 'Hygenic ERP',
+    'name': 'HyGen ERP Version 1.0.0',
+    'summary': 'Hygenic ERP V13',
     'depends': ['crm','product', 'purchase', 'sale','account','stock'],
     'data': [
             # 'views/sale_form.xml',
