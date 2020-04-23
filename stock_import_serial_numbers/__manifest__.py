@@ -4,7 +4,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
-    'name': 'Stock - Import Serial Numbers',
+    'name': 'Stock - Import Serial Numbers SE',
     'category': 'Warehouse',
     'summary': 'Input several serial numbers',
     'website': 'https://www.me./',
